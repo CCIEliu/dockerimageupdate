@@ -6,4 +6,9 @@ echo -e "\n[Updating \033[34m$image\033[0m image.....]"
 docker pull $image
 echo -e "[Image \033[34m$image\033[0m updated]"
 done
+
+for oldimg in $(docker images | grep "<none>" | awk '{print $3}')
+do
+docker rmi $oldimg
+done
 echo 'Finished update all images'
